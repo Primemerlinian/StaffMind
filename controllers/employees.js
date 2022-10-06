@@ -47,6 +47,19 @@ function show(req, res) {
   })
 }
 
+function edit(req, res) {
+  Employee.findById(req.params.id)
+  .then(employee => {
+    res.render('employees/edit', {
+      title: 'Edit Employee',
+      employee,
+    })
+  })
+  .catch(err => {
+    res.redirect('/employees')
+  })
+}
+
 export {
   index, 
   newEmployee as new,
