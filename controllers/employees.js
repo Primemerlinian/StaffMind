@@ -60,9 +60,23 @@ function edit(req, res) {
   })
 }
 
+function update(req, res){
+  Employee.findByIdAndUpdate(req.params.id, req.body)
+  .then(employee => {
+    res.redirect(`/employee/${entry._id}`)
+  })
+  .catch(err => {
+    res.redirect('/employees')
+  })
+}
+
+
+
 export {
   index, 
   newEmployee as new,
   create,
   show,
+  edit,
+  update,
 }
