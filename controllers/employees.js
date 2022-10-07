@@ -70,6 +70,28 @@ function update(req, res){
   })
 }
 
+function deleteEmployee(req, res){
+  Employee.findByIdAndDelete(req.params.id)
+  .then(employee => {
+    res.redirect('/employees')
+  })
+  .catch(err => {
+    res.redirect('/employees')
+  })
+}
+
+function createNote(req, res){
+  req.body.employeeId = req.user.profile._id
+  Employee.findById(req.params.id)
+  .then(entry => {
+    employee.note.push(req.body)
+    note.save()
+    res.redirect(`/employees/${employee._id}`)
+  })
+  .catch(err => {
+    res.redirect('/employees')
+  })
+}
 
 
 export {
@@ -79,4 +101,6 @@ export {
   show,
   edit,
   update,
+  deleteEmployee as delete,c
+
 }
