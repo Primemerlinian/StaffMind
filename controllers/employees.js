@@ -93,6 +93,18 @@ function createNote(req, res){
   })
 }
 
+function deleteNote(req, res){
+  Employee.findById(req.params.id)
+  .then(employee =>{
+    employee.note.remove(req.params.noteId)
+    note.save()
+    res.redirect(`/employees/${employee._id}`)
+  })
+  .catch(err => {
+    res.redirect('/employees')
+  })
+}
+
 
 export {
   index, 
@@ -101,6 +113,8 @@ export {
   show,
   edit,
   update,
-  deleteEmployee as delete,c
+  deleteEmployee as delete,
+  createNote,
+  deleteNote as delete,
 
 }
